@@ -1,7 +1,6 @@
 /**:
   ros__parameters:
-    serial_port: "/dev/ttyUSB0"
-    serial_port_baud_rate: 460800
+    #NTRIP Params
     ntrip_ip: "212.156.70.42"
     ntrip_user_name: "K0734151301"
     ntrip_password: "GzMSQg"
@@ -9,5 +8,17 @@
     ntrip_port: 2101
     ntrip_location_lat: 41.018893949
     ntrip_location_lon: 28.890924848
+
+    #Serial Port Params
+    publish_port_rtcm_active: false
+    serial_port: "/dev/ttyUSB0"
+    serial_port_baud_rate: 460800
+
+    #RTCM Publisher Params
     publish_ros_rtcm_active: true
+    rtcm_topic: "/ntrip/rtcm"
+
+
     debug: true
+
+

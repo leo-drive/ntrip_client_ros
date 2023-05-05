@@ -12,7 +12,8 @@
 #include <string>
 #include <sstream>
 #include <cstring>
-
+#include <unistd.h>
+#include <vector>
 
 #include <ntrip/ntrip_client.h>
 
@@ -42,14 +43,26 @@ private:
   std::string m_ntrip_password_;
   std::string m_ntrip_username_;
   std::string m_ntrip_mountpoint_;
-  long m_ntrip_port_;
-  bool m_publish_rtcm_;
+  int m_ntrip_port_;
+  bool m_publish_ros_rtcm_active_;
   bool m_debug_;
   double m_ntrip_location_lat;
   double m_ntrip_location_lon;
+  std::string m_rtcm_topic_;
+  bool m_publish_port_rtcm_active_;
+
+
 
   libntrip::NtripClient m_ntripClient_;
 
+  mavros_msgs::msg::RTCM m_msg_rtcm_;
+
+  //Publisher
+  rclcpp::Publisher<mavros_msgs::msg::RTCM>::SharedPtr pub_rtcm_;
+
+
+
+  
   uint8_t m_ntripStatus_;
 
 
