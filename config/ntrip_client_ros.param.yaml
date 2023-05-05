@@ -10,7 +10,7 @@
     ntrip_location_lon: 28.890924848
 
     #Serial Port Params
-    publish_port_rtcm_active: false
+    publish_port_rtcm_active: true
     serial_port: "/dev/ttyUSB0"
     serial_port_baud_rate: 460800
 

@@ -41,7 +41,10 @@ add_executable(ntrip_client_ros_exe
         ${NTRIP_CLIENT_ROS_SRC}
         ${NTRIP_CLIENT_ROS_HEADER}
         ${NTRIP_LIB_SRC}
-        ${NTRIP_LIB_HEADER})
+        ${NTRIP_LIB_HEADER}
+        ${ASYNC_SERIAL_SRC}
+        ${ASYNC_SERIAL_HEADER}
+        )
 
 ament_target_dependencies(ntrip_client_ros_exe
         rclcpp

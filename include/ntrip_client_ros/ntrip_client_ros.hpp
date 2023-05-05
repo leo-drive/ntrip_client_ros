@@ -52,6 +52,7 @@ private:
   bool m_publish_port_rtcm_active_;
 
 
+  CallbackAsyncSerial m_serial_boost_;
 
   libntrip::NtripClient m_ntripClient_;
 
