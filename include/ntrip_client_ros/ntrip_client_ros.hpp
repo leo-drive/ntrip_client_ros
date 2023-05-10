@@ -29,6 +29,9 @@ public:
 
   NtripClientRos();
 
+  ~NtripClientRos() override {
+    m_serial_boost_.close();
+  }
 
 private:
 

@@ -74,7 +74,7 @@ NtripClientRos::NtripClientRos():Node("ntrip_client_ros"),
 
   m_rtcm_topic_{this->declare_parameter(
                             "rtcm_topic",
-                            ParameterValue{"/rtk/rtcm"},
+                            ParameterValue{"/ntrip/rtcm"},
                             ParameterDescriptor{})
                         .get<std::string>()},
   m_publish_port_rtcm_active_{this->declare_parameter(
@@ -94,18 +94,18 @@ NtripClientRos::NtripClientRos():Node("ntrip_client_ros"),
       m_serial_boost_.open(m_serial_port_, m_serial_baud_rate_);
     } catch (boost::system::system_error & e) {
       RCLCPP_ERROR(
-        this->get_logger(), "\033[1;31m ClapB7 Serial port could not be opened: \033[0m  %s",
+        this->get_logger(), "\033[1;31m RTK Serial port could not be opened: \033[0m  %s",
         e.what());
     }
 
     if (m_serial_boost_.isOpen() == false) {
       RCLCPP_INFO(
         rclcpp::get_logger("rclcpp"),
-        "\033[1;31m ClapB7 Serial port %s could not be opened, plug and relaunch the package\033[0m\n",
+        "\033[1;31m RTK Serial port %s could not be opened, plug and relaunch the package\033[0m\n",
         m_serial_port_.c_str());
     } else if (m_serial_boost_.isOpen() == true) {
       RCLCPP_INFO(
-        rclcpp::get_logger("rclcpp"), "\033[1;32m Serial port %s opened!!!\033[0m\n",
+        rclcpp::get_logger("rclcpp"), "\033[1;32m  RTK Serial port %s opened!!!\033[0m\n",
         m_serial_port_.c_str());
       // setting the serial receive callback function
       // m_serial_boost_.setCallback(bind(&NtripClientRos::serial_receive_callback, this, _1, _2));
@@ -139,7 +139,7 @@ bool NtripClientRos::NtripClientStart()
                                 if (m_publish_ros_rtcm_active_){
                                   std::vector<uint8_t> data;
                                   std::string s = buffer;
-                                  RCLCPP_INFO(this->get_logger(),"%s",s.c_str());
+                                  //RCLCPP_INFO(this->get_logger(),"%s",s.c_str());
                                   for (int i = 0; i < size; i++)
                                     data.push_back(static_cast<uint8_t>(buffer[i]));
 
@@ -158,12 +158,12 @@ bool NtripClientRos::NtripClientStart()
                                   }catch(boost::system::system_error & e){
                                     RCLCPP_ERROR(this->get_logger(),"Cannot write to port: %s",e.what());
                                   }
-
                                 }
                                 if (m_debug_) {
                                   RCLCPP_INFO(this->get_logger(), "NTRIP Data size: %lu", m_msg_rtcm_.data.size());
                                   RCLCPP_INFO(this->get_logger(), "NTRIP Status: %d", m_ntripClient_.service_is_running());
                                 }
+
                               }
                          });
 
