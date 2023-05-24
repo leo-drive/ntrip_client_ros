@@ -160,7 +160,7 @@ bool NtripClientRos::NtripClientStart()
                                   }
                                 }
                                 if (m_debug_) {
-                                  RCLCPP_INFO(this->get_logger(), "NTRIP Data size: %lu", m_msg_rtcm_.data.size());
+                                  RCLCPP_INFO(this->get_logger(), "NTRIP Data size: %d", size);
                                   RCLCPP_INFO(this->get_logger(), "NTRIP Status: %d", m_ntripClient_.service_is_running());
                                 }
 
