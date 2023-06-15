@@ -151,18 +151,24 @@ bool NtripClientRos::NtripClientStart()
                                   m_msg_rtcm_.set__data(data);
 
                                   pub_rtcm_->publish(m_msg_rtcm_);
+                                  if (m_debug_) {
+                                    RCLCPP_INFO(this->get_logger(), "NTRIP Topic Send Data size: %lu", data.size());
+                                    RCLCPP_INFO(this->get_logger(), "NTRIP Topic Send Status: %d", m_ntripClient_.service_is_running());
+                                  }
+
                                 }
                                 if(m_publish_port_rtcm_active_ && m_serial_boost_.isOpen()){
                                   try{
                                     m_serial_boost_.write(buffer,size);
+                                    if (m_debug_) {
+                                      RCLCPP_INFO(this->get_logger(), "NTRIP Port Send Data size: %d", size);
+                                      RCLCPP_INFO(this->get_logger(), "NTRIP Port Send Status: %d", m_ntripClient_.service_is_running());
+                                    }
                                   }catch(boost::system::system_error & e){
                                     RCLCPP_ERROR(this->get_logger(),"Cannot write to port: %s",e.what());
                                   }
                                 }
-                                if (m_debug_) {
-                                  RCLCPP_INFO(this->get_logger(), "NTRIP Data size: %d", size);
-                                  RCLCPP_INFO(this->get_logger(), "NTRIP Status: %d", m_ntripClient_.service_is_running());
-                                }
+
 
                               }
                          });
