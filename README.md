@@ -1,11 +1,9 @@
 # NTRIP Client ROS 
 
-<hr>
-
 Robeff Technology NTRIP Client package publish RTCM ROS messages and send through serial port.
 
 ## Installation 
-<hr>
+
 
 ### Dependencies
 
