@@ -16,7 +16,7 @@
 
     #RTCM Publisher Params
     publish_ros_rtcm_active: true
-    rtcm_topic: "/ntrip/rtcm"
+    rtcm_topic: "/sensing/gnss/ntrip/rtcm"
 
 
     debug: true
